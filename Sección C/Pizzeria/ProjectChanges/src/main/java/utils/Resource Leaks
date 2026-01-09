@@ -1,0 +1,32 @@
+
+
+public List<Pizza> loadAllPizzas() throws SQLException {
+    List<Pizza> pizzas = new ArrayList<>();
+    executeQuery("SELECT * FROM PIZZAS", rs ->
+        pizzas.add(mapPizza(rs))
+    );
+    return pizzas;
+}
+
+
+private Pizza mapPizza(ResultSet rs) throws SQLException {
+    return new Pizza(
+        rs.getInt("id"),
+        rs.getString("NAME"),
+        rs.getInt("SIZE"),
+        rs.getDouble("PRICE")
+    );
+}
+
+
+private void executeQuery(String sql, ResultSetHandler handler) throws SQLException {
+    Connection con = getDBConnection();
+    PreparedStatement ps = con.prepareStatement(sql);
+    ResultSet rs = ps.executeQuery();
+    while (rs.next()) handler.handle(rs);
+}
+
+
+interface ResultSetHandler {
+    void handle(ResultSet rs) throws SQLException;
+}

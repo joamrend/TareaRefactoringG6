@@ -1,0 +1,33 @@
+class FestivaMetricDTO {
+    String timestamp;
+    long userId;
+    String userName;
+    String command;
+    String status;
+    long processingTimeMillis;
+}
+
+
+private String toJson(FestivaMetricDTO dto) {
+    return String.format(
+        "{\"timestamp\":\"%s\",\"userId\":%d,\"userName\":\"%s\",\"command\":\"%s\",\"status\":\"%s\",\"processingTimeMillis\":%d}",
+        dto.timestamp,
+        dto.userId,
+        dto.userName,
+        dto.command,
+        dto.status,
+        dto.processingTimeMillis
+    );
+}
+
+
+FestivaMetricDTO dto = new FestivaMetricDTO();
+dto.timestamp = Instant.now().toString();
+dto.userId = userId;
+dto.userName = userName;
+dto.command = command;
+dto.status = status;
+dto.processingTimeMillis = processingTimeMillis;
+
+return toJson(dto);
+

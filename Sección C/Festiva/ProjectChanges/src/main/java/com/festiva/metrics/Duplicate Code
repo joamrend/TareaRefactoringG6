@@ -1,0 +1,46 @@
+private UserInfo extractUserInfo(Update update) {
+    Long userId = 0L;
+    String userName = "unknown";
+    String command = "unknown";
+
+    if (update.hasMessage() && update.getMessage().getFrom() != null) {
+        command = update.getMessage().getText();
+        userId = update.getMessage().getFrom().getId();
+        userName = buildUserName(update.getMessage().getFrom());
+    } 
+    else if (update.hasCallbackQuery() && update.getCallbackQuery().getFrom() != null) {
+        command = update.getCallbackQuery().getData();
+        userId = update.getCallbackQuery().getFrom().getId();
+        userName = buildUserName(update.getCallbackQuery().getFrom());
+    }
+
+    return new UserInfo(userId, userName, command);
+}
+
+
+private String buildUserName(User from) {
+    return from.getUserName() != null
+            ? from.getUserName()
+            : from.getFirstName() + " " + from.getLastName();
+}
+
+
+class UserInfo {
+    Long userId;
+    String userName;
+    String command;
+
+    UserInfo(Long userId, String userName, String command) {
+        this.userId = userId;
+        this.userName = userName;
+        this.command = command;
+    }
+}
+
+
+UserInfo info = extractUserInfo(update);
+
+return String.format(
+    "{\"userId\":%d,\"userName\":\"%s\",\"command\":\"%s\",\"status\":\"%s\",\"processingTimeMillis\":%d}",
+    info.userId, info.userName, info.command, status, processingTimeMillis
+);

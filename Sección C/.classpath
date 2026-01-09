@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Book_Search/ProjectChanges/src/main/java"/>
+	<classpathentry kind="src" path="Festiva/ProjectChanges/src/main/java"/>
+	<classpathentry kind="src" path="Pizzeria/ProjectChanges/src/main/java"/>
+	<classpathentry kind="src" path="Simple-Java-Calculator/ProjectChanges/src"/>
+	<classpathentry kind="src" path="TaskTracker/ProjectChanges/src"/>
+	<classpathentry kind="output" path="Book_Search/ProjectChanges/target/classes"/>
+</classpath>

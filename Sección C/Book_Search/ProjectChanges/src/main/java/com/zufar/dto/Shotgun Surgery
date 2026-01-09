@@ -1,0 +1,25 @@
+public AuthorDTO(AuthorData data) {
+    this.first_name = data.first_name;
+    this.last_name = data.last_name;
+    this.patronymic = data.patronymic;
+    this.nick_name = data.nick_name;
+    this.biography = data.biography;
+    this.birthday = data.birthday;
+    this.deathday = data.deathday;
+    this.countryId = data.countryId;
+    this.booksIds = data.booksIds;
+}
+
+
+class AuthorData {
+    String first_name;
+    String last_name;
+    String patronymic;
+    String nick_name;
+    String biography;
+    DateDTO birthday;
+    DateDTO deathday;
+    Long countryId;
+    List<Long> booksIds;
+}
+

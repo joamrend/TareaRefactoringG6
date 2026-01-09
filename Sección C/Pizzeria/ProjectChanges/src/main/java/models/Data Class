@@ -1,0 +1,42 @@
+class Person {
+    String name;
+    String surname;
+    String patronymic;
+
+    Person(String n, String s, String p) {
+        name = n;
+        surname = s;
+        patronymic = p;
+    }
+}
+
+class Client {
+    int id;
+    Person person;
+    int telephoneNumber;
+
+    Client(int id, Person p, int phone) {
+        this.id = id;
+        this.person = p;
+        this.telephoneNumber = phone;
+    }
+}
+
+class PizzaMaker {
+    int id;
+    Person person;
+    int hourlyPay;
+
+    PizzaMaker(int id, Person p, int pay) {
+        this.id = id;
+        this.person = p;
+        this.hourlyPay = pay;
+    }
+}
+
+class Pizza {
+    int id;
+    String name;
+    double size;
+    double price;
+}

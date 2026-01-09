@@ -1,0 +1,42 @@
+
+
+interface Operation {
+    void execute();
+}
+
+Map<Object, Operation> operations = new HashMap<>();
+
+private void registerOperations() {
+    operations.put(butAdd, () -> writer(calc.calculateBi(Calculator.BiOperatorModes.add, reader())));
+    operations.put(butMinus, () -> writer(calc.calculateBi(Calculator.BiOperatorModes.minus, reader())));
+    operations.put(butMultiply, () -> writer(calc.calculateBi(Calculator.BiOperatorModes.multiply, reader())));
+    operations.put(butDivide, () -> writer(calc.calculateBi(Calculator.BiOperatorModes.divide, reader())));
+
+    operations.put(butSquare, () -> writer(calc.calculateMono(Calculator.MonoOperatorModes.square, reader())));
+    operations.put(butSquareRoot, () -> writer(calc.calculateMono(Calculator.MonoOperatorModes.squareRoot, reader())));
+    operations.put(butCos, () -> writer(calc.calculateMono(Calculator.MonoOperatorModes.cos, reader())));
+    operations.put(butSin, () -> writer(calc.calculateMono(Calculator.MonoOperatorModes.sin, reader())));
+    operations.put(butTan, () -> writer(calc.calculateMono(Calculator.MonoOperatorModes.tan, reader())));
+
+    operations.put(butEqual, () -> writer(calc.calculateEqual(reader())));
+    operations.put(butCancel, () -> writer(calc.reset()));
+    operations.put(butBinary, this::parsetoBinary);
+}
+
+@Override
+public void actionPerformed(ActionEvent e) {
+    Object source = e.getSource();
+
+    for (int i = 0; i < 10; i++) {
+        if (source == but[i]) {
+            text.replaceSelection(buttonValue[i]);
+            return;
+        }
+    }
+
+    Operation op = operations.get(source);
+    if (op != null) {
+        op.execute();
+        text.selectAll();
+    }
+}

@@ -1,0 +1,46 @@
+public String addUser(UserRegistrationDTO dto) {
+
+    if (isInvalid(dto)) {
+        return "registrationView";
+    }
+
+    if (!userService.isLoginUnique(dto.getLogin())) {
+        return "registrationView";
+    }
+
+    LocalDate birthday = LocalDate.of(
+            dto.getYear(),
+            dto.getMonth(),
+            dto.getDay()
+    );
+
+    return "index";
+}
+
+private boolean isInvalid(UserRegistrationDTO dto) {
+    return dto.getFirstName().isEmpty()
+            || dto.getLastName().isEmpty()
+            || dto.getPatronymic().isEmpty()
+            || dto.getLogin().isEmpty()
+            || dto.getPassword().isEmpty()
+            || dto.getCountry() == null
+            || dto.getDay() == -1
+            || dto.getMonth() == -1
+            || dto.getYear() == -1;
+}
+
+
+public class UserRegistrationDTO {
+    private String firstName;
+    private String lastName;
+    private String patronymic;
+    private String nickName;
+    private Long country;
+    private int day;
+    private int month;
+    private int year;
+    private String login;
+    private String password;
+
+    // getters
+}

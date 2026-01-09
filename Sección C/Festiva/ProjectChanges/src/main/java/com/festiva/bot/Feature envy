@@ -1,0 +1,26 @@
+class BirthdayService {
+
+    private final CustomDAO dao;
+
+    public BirthdayService(CustomDAO dao) {
+        this.dao = dao;
+    }
+
+    public String getBirthdaysByMonth(String month) {
+        // lógica de fechas + filtros aquí
+        return "Birthday result";
+    }
+}
+
+public class Callback {
+
+    private final BirthdayService service;
+
+    public Callback(CustomDAO dao) {
+        this.service = new BirthdayService(dao);
+    }
+
+    public String handleCallback(String month) {
+        return service.getBirthdaysByMonth(month);
+    }
+}
